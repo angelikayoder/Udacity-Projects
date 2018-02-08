@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+  <head>
+    <!--I know the <head> tag technically isn't a neccesity anymore but, I like it to help keep me organized -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Build A Portfolio Site">
+    <meta name="keywords" content="I know this isn't neccessary for like the past decade but, I'm acknowledging it exists on some level">
+    <meta name="author" content="Angelika Yoder">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udacity Build a Portfolio Site</title>
+    <!-- link to custom internal stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- link to Font Awesome CDN -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  </head>
+
+  <body>
+    <div class="grid">
+      <header>
+        <div class="logo">
+          <a href="https://devleo.net" target="_blank">
+            <img src="img/logo.svg" alt="Devleo logo">
+          </a>
+        </div>
+        <div class="my-name">
+          <h1>
+            Angelika Yoder
+          </h1>
+
+          <p>
+            Full Stack Web Developer
+          </p>
+        </div>
+      </header>
+
+      <aside class="sidebar-left">
+        <ul class="media-list">
+          <li>
+            <a href="https://twitter.com/angelikayoder" target="_blank">
+              <span><i class="fab fa-twitter fa-4x"></i></span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/angelika.yoder" target="_blank">
+              <span><i class="fab fa-facebook fa-4x"></i></span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/angelikayoder/" target="_blank">
+              <span><i class="fab fa-linkedin fa-4x"></i></span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/angelikayoder" target="_blank">
+              <span><i class="fab fa-github fa-4x"></i></span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <article>
+        <figure>
+          <figcaption>
+            <h2>
+              Javascript | Ruby
+            </h2>
+          </figcaption>
+          <img src="img/profilepic-small.jpeg" class="round profile-image" alt="profile picture of Angelika Yoder">
+        </figure>
+      </article>
+
+      <aside class="sidebar-right media-list">
+        <div class="container media-list">
+          <img src="img/frontend.png" class="round sidebar-img" alt="front end code snippet" height="250" width="250">
+          <div class="overlay round">
+            <div class="text">
+              Examples of Front End Work Coming Soon!
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <img src="img/backend.png" class="round sidebar-img" alt="back end code snippet" height="250" width="250">
+          <div class="overlay round">
+            <div class="text">
+              Examples of Back End Work Coming Soon!
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <footer>
+        <p>
+          <span>
+            <i class="far fa-copyright"></i>
+          </span>2018 Angelika Yoder
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

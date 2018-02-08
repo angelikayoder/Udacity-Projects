@@ -1,0 +1,294 @@
+/*instead of using a "*", use html tag, faster load*/
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: white;
+    max-height: 100vh;
+    max-width: 100vw;
+    background: black url("img/skyline_Akron.jpeg") fixed no-repeat;
+    background-size: cover;
+}
+
+aside,
+article {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+figure {
+    display: inline-flex;
+    flex-direction: column;
+    align-self: center;
+    align-content: center;
+}
+
+figcaption {
+    margin-left: 15%;
+}
+
+header,
+footer {
+    grid-column: 1 / 4;
+}
+
+a {
+    color: white;
+}
+
+header {
+    display: inline-flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    height: auto;
+    overflow: hidden;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 10%;
+    text-shadow: 2px 2px 4px black;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 100px auto 300px;
+}
+
+.logo {
+    display: flex;
+    flex-shrink: 2;
+    order: 1;
+    max-height: inherit;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}
+
+.sidebar-right {
+    flex-wrap: wrap;
+    position: relative;
+    margin: 0;
+    justify-content: space-around;
+    display: inline-flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    height: auto;
+    overflow: hidden;
+}
+
+.my-name {
+    display: flex;
+    order: 2;
+    flex-grow: 2;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-self: center;
+    align-content: center;
+    justify-content: flex-end;
+    position: relative;
+    margin: 2%;
+}
+
+.round {
+    border-radius: 50%;
+    flex-shrink: 3;
+    max-height: inherit;
+    position: relative;
+}
+
+.sidebar-img {
+    flex-wrap: nowrap;
+    position: relative;
+    margin: 20% 0;
+    justify-content: space-around;
+}
+
+.container {
+    position: relative;
+    width: 90%;
+}
+
+.overlay {
+    position: absolute;
+    height: 75%;
+    width: 95%;
+    top: 12%;
+    bottom: 20%;
+    left: 0;
+    right: 5%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: black;
+}
+
+.container:hover .overlay {
+    opacity: 1;
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.profile-image {
+    display: flex;
+    background-size: contain;
+}
+
+.media-list {
+    display: flex;
+    list-style: none;
+    flex-flow: nowrap;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.media-list li {
+    flex-wrap: nowrap;
+    position: relative;
+    margin: 20% 0;
+    justify-content: space-around;
+}
+
+/*Media Settings for ipad, must appear in order before smaller @media for Nexus 5*/
+
+@media all and (max-width: 770px) {
+    body {
+        background: url("img/skyline_Akron_med.jpg") fixed no-repeat;
+        background-size: cover;
+    }
+
+    aside,
+    article {
+        grid-column: 1 / 4;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        align-content: center;
+    }
+
+    header,
+    footer {
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        align-content: center;
+    }
+
+    header .my-name {
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        align-content: center;
+    }
+
+    aside.sidebar-right {
+        margin-left: 30vw;
+    }
+
+    figcaption {
+        margin-left: 10%;
+    }
+
+    figure {
+        margin-right: 10%;
+    }
+
+    div.overlay {
+        position: absolute;
+        height: 80%;
+        width: 100%;
+        top: 10%;
+        bottom: 10%;
+        left: 0;
+        right: 10%;
+        opacity: 0;
+        transition: .5s ease;
+        background-color: black;
+    }
+
+    div.container {
+        width: 50%;
+    }
+
+    /* elements ordered so social media buttons appear above footer when in column on smaller screens*/
+    :nth-child(1) {
+        order: 1;
+    }
+
+    :nth-child(2) {
+        order: 4;
+    }
+
+    :nth-child(3) {
+        order: 2;
+    }
+
+    :nth-child(4) {
+        order: 3;
+    }
+
+    :nth-child(5) {
+        order: 5;
+    }
+}
+
+/*Media Settings for Nexus 5, must come after ipad @media settings*/
+
+@media all and (min-width: 300px) and (max-width: 430px) {
+    body {
+        background: url("img/skyline_Akron_sm.jpeg") fixed no-repeat;
+        background-size: cover;
+    }
+
+    div.overlay {
+        position: absolute;
+        height: 80%;
+        width: 100%;
+        top: 10%;
+        bottom: 10%;
+        left: 0;
+        right: 10%;
+        opacity: 0;
+        transition: 0.5s ease;
+        background-color: black;
+    }
+
+    div.container {
+        width: 80%;
+    }
+
+    aside.sidebar-right {
+        margin-left: 10vw;
+    }
+
+    figure {
+        margin-right: 20%;
+    }
+
+    header .my-name {
+        margin-right: 15%;
+    }
+    
+    .logo {
+        margin-right: 20%;
+    }
+}
