@@ -1,20 +1,9 @@
-# Memory Game Project
+# Memory Game Project -FEND Udacity Nanodegree Program
 
-## Table of Contents
+## Object of the Game
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+This game contains 8 pairs of symbols. Match all 8 pairs and win!
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Click on two cards at a time in order to flip them over and view them. If they match, find two more. If they don't match, both cards will flip back over and you need to try to remember what their symbols are. Once all 8 pairs are matched, you win! If you match all 8 pairs in less than 30 moves, you win 3 out of 3 stars. If you match all pairs within 40 moves, you win 2 stars. If you match all pairs within 50 moves, you win 1 star.
