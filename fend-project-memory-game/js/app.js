@@ -69,13 +69,16 @@ for (let i = 0; i < wholeDeck.length; i++) {
 
 /* sets card class to open and show */
 function cardOpener() {
+  if (clickedCards.length === 1 && clickedCards[0].isSameNode(this)) {
+    return;
+  }
   clickedCards.push(this);
   this.classList.toggle('open');
   this.classList.toggle('show');
   if (clickedCards.length === 2) {
     setTimeout(compare, 500);
   }
-  countMoves();
+
 }
 
 /* Changes cards class to match if classes match then empties clickedCards array */
@@ -88,6 +91,7 @@ function compare() {
     noMatch();
   }
   clickedCards = [];
+  countMoves();
 }
 
 /* if cards i class matches, cardsMatch sets the cards classes to match */
