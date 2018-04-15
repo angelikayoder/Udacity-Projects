@@ -21,7 +21,7 @@ $(function() {
      * allFeeds in app.js to be an empty array and refresh the
      * page?
      */
-    
+
     it('are defined', function() {
       expect(allFeeds).toBeDefined();
       expect(allFeeds.length).not.toBe(0);
@@ -64,14 +64,13 @@ $(function() {
   });
 
   describe('The menu', function() {
-    var hideMenu = $('body').hasClass('menu-hidden');
     /* This test ensures the menu element is
      * hidden by default. You'll have to analyze the HTML and
      * the CSS to determine how we're performing the
      * hiding/showing of the menu element.
      */
     it('menu element is hidden by default', function() {
-      expect(hideMenu).toEqual(true);
+      expect($('body').hasClass('menu-hidden')).toEqual(true);
     });
     /* This test ensures the menu changes
      * visibility when the menu icon is clicked. This test
@@ -106,7 +105,7 @@ $(function() {
     });
 
     it('is called and there is at least one entry within feed container', function() {
-      expect($('.entry').length).toBeGreaterThan(0);
+      expect($('.feed .entry').length).toBeGreaterThan(0);
     });
   });
 
@@ -117,22 +116,25 @@ $(function() {
      * by the loadFeed function that the content actually changes.
      * Remember, loadFeed() is asynchronous.
      */
-    var $feedOne;
-    var $feedTwo;
+    var $firstFeedItem;
+    var $secondFeedItem;
 
     beforeEach(function(done) {
       loadFeed(0, function() {
-        firstFeedItem = $('.feed').html();
+        $firstFeedItem = $('.feed').html();
+      });
+
+      loadFeed(1, function() {
+        $secondFeedItem = $('.feed').html();
         done();
       });
     });
 
     it('should change feed content after loading feed', function(done) {
-      loadFeed(1, function() {
-        secondFeedItem = $('.feed').html();
-        expect(secondFeedItem).not.toEqual(firstFeedItem);
+      // loadFeed(1, function() {
+        expect($secondFeedItem).not.toEqual($firstFeedItem);
         done();
-      });
+      // });
     });
   });
 }());
