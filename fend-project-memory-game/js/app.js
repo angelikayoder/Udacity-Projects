@@ -69,7 +69,7 @@ for (let i = 0; i < wholeDeck.length; i++) {
 
 /* sets card class to open and show */
 function cardOpener() {
-  if (clickedCards.length === 1 && clickedCards[0].isSameNode(this)) {
+  if (clickedCards.length === 1 $[0].isSameNode(this)) {
     return;
   }
   clickedCards.push(this);
