@@ -1,3 +1,73 @@
 body {
     text-align: center;
 }
+.score-panel {
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+}
+
+.stars-earned {
+    text: red;
+}
+
+/* Style for modal */
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: scaleX(1.1) scaleY(1.1);
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.modal-content {
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1em 1.5em;
+    width: 400px;
+    border-radius: 10px;
+    background-color: #ffe4c4;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.close-this {
+    float: right;
+    background-color: #d2b48c;
+    font-family: 'Open Sans', monospace;
+    font-weight: bold;
+    line-height: 2rem;
+    width: 2rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.close-this:hover {
+    background-color: #ff0000;
+}
