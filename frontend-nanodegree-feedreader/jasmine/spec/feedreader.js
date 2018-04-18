@@ -122,13 +122,13 @@ $(function() {
     beforeEach(function(done) {
       loadFeed(0, function() {
         $firstFeedItem = $('.feed').html();
-      });
-
-      loadFeed(1, function() {
+        
+        loadFeed(1, function() {
         $secondFeedItem = $('.feed').html();
         done();
       });
     });
+  });
 
     it('should change feed content after loading feed', function(done) {
       // loadFeed(1, function() {
