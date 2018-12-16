@@ -24,10 +24,11 @@ changeShelf = (book, shelf) => {
   render() {
     return (
       <div className="app">
-        <Main
+        {/*<Main
         books = {this.state.books}
         changeShelf = {this.changeShelf}
-        />
+        /> */}
+        <Search/>
       </div>
     )
   }
