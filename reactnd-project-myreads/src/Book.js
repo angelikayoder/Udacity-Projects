@@ -15,7 +15,7 @@ class Book extends Component {
                      onChange = {(event) => this.props.changeShelf(
                          this.props.book, event.target.value
                      )}
-                     value = {this.props.book.shelf}
+                     value = {this.props.shelf}
                   >
                     <option value="move" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>

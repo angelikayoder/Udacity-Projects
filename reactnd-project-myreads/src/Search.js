@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
 import Book from './Book';
+import { Link } from 'react-router-dom';
 
 class Search extends Component {
 
@@ -34,7 +35,11 @@ class Search extends Component {
         return(
             <div className="search-books">
               <div className="search-books-bar">
-                <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
+                <Link
+                    to = "/"
+                    className="close-search">
+                        Close
+                </Link>
                 <div className="search-books-input-wrapper">
                   <input
                       type="text" placeholder="Search by title or author" value = {this.state.query} onChange = {(event) => this.updateQuery(event.target.value)}
@@ -44,13 +49,24 @@ class Search extends Component {
               <div className="search-books-results">
                 <ol className="books-grid">
                      {
-                         this.state.queriedBooks.map(queriedBook => (
+                         this.state.queriedBooks.map(queriedBook => {
+                             let thisShelf = "none";
+
+                             this.props.books.map(book => (
+                                 book.id === queriedBook.id ?
+                                 thisShelf = book.shelf :
+                                 ''
+                             ));
+                             return (
                              <li key = {queriedBook.id}>
                                 <Book
                                     book = {queriedBook}
+                                    changeShelf = {this.props.changeShelf}
+                                    shelf = {thisShelf}
                                 />
                              </li>
-                         ))
+                             )
+                            })
                      }
                 </ol>
               </div>
