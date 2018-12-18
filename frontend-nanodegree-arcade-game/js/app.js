@@ -1,8 +1,6 @@
 //game variables
-const canvasHeight = 606;
-const canvasWidth = 505;
-const allStars = document.querySelector('.stars').innerHTML;
-const startingScore = 0;
+const CANVAS_WIDTH = 505;
+const ALL_STARS = document.querySelector('.stars').innerHTML;
 let score = 0;
 let starHolder = 3;
 // let score = parseInt(document.getElementsByClassName('score')[0].innerText);
@@ -23,13 +21,13 @@ let Sound = function sound(src) {
   }
 };
 //sound variables and objects
-const boing = new Sound("sounds/boing.wav");
-const whah_whah = new Sound("sounds/whah_whah.wav");
-const walking = new Sound("sounds/walking.wav");
-const success = new Sound("sounds/fanfare.wav");
+const BOING = new Sound("sounds/boing.wav");
+const WHAH_WHAH = new Sound("sounds/whah_whah.wav");
+const WALKING = new Sound("sounds/walking.wav");
+const SUCCESS = new Sound("sounds/fanfare.wav");
 
 // Enemies our player must avoid
-var Enemy = function() {
+const Enemy = function() {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
   //positioning variables below:
@@ -53,7 +51,7 @@ Enemy.prototype.update = function(dt) {
   //The canvas width= 505 in engine.js
   this.x += (this.speed * dt);
 
-  if (this.x >= canvasWidth) {
+  if (this.x >= CANVAS_WIDTH) {
     this.x = 0;
     this.y = Math.floor(Math.random() * (310 - 60)) + 60;
   }
@@ -75,17 +73,12 @@ Enemy.prototype.checkCollisions = function() {
     (this.y <= player.y + .4 * player.height)) {
     // Subtract a star
     // reset the player position to the start position
-    resetPlayer();
+    player.reset();
     deductStars();
     // Play collision sound
-    boing.play();
+    BOING.play();
   }
 };
-
-function resetPlayer() {
-  player.y = playerStartY;
-  player.x = playerStartX;
-}
 
 function deductStars() {
   let stars = document.getElementsByClassName('stars')[0];
@@ -104,7 +97,7 @@ function deductStars() {
 let starContainer = document.querySelector('.stars');
 
 function resetStars() {
-  starContainer.innerHTML = allStars;
+  starContainer.innerHTML = ALL_STARS;
 }
 // Now write your own player class
 // This class requires an update(), render() and
@@ -126,17 +119,22 @@ Player.prototype.update = function(dt) {
     this.x = playerStartX;
     scoreUp();
     // play success sound
-    success.play();
+    SUCCESS.play();
   } else if (this.y >= 410) {
     this.y = 410; //keeps player from going below canvas
   }
   //keeps player going off canvas left/right
   if (this.x < 0) {
     this.x = 0;
-  } else if (this.x > canvasWidth - 90) {
-    this.x = canvasWidth - 90;
+  } else if (this.x > CANVAS_WIDTH - 90) {
+    this.x = CANVAS_WIDTH - 90;
   }
 
+};
+
+Player.prototype.reset = function() {
+    this.y = playerStartY;
+    this.x = playerStartX;
 };
 
 function scoreUp() {
@@ -182,14 +180,14 @@ let enemy = new Enemy();
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-  var allowedKeys = {
+  let allowedKeys = {
     37: 'left',
     38: 'up',
     39: 'right',
     40: 'down'
   };
   // play the walking sound
-  walking.play();
+  WALKING.play();
   player.handleInput(allowedKeys[e.keyCode]);
 });
 
@@ -197,7 +195,7 @@ document.addEventListener('keyup', function(e) {
 function gameFinished() {
   displayModal();
   toggleModal();
-  whah_whah.play();
+  WHAH_WHAH.play();
   enemy.speed = 0;
 }
 
