@@ -6,7 +6,6 @@ import Book from './Book';
 import { Link } from 'react-router-dom';
 
 class Search extends Component {
-
     state = {
         query: '',
         queriedBooks: []
@@ -34,42 +33,40 @@ class Search extends Component {
     render() {
         return(
             <div className="search-books">
-              <div className="search-books-bar">
-                <Link
-                    to = "/"
-                    className="close-search">
-                        Close
-                </Link>
-                <div className="search-books-input-wrapper">
-                  <input
-                      type="text" placeholder="Search by title or author" value = {this.state.query} onChange = {(event) => this.updateQuery(event.target.value)}
-                  />
+                <div className="search-books-bar">
+                    <Link to = "/" className = "close-search">Close</Link>
+                    <div className="search-books-input-wrapper">
+                        <input
+                            type="text"
+                            placeholder="Search by title or author"
+                            value={this.state.query}
+                            onChange={(event) => this.updateQuery(event.target.value)}
+                        />
+                    </div>
                 </div>
-              </div>
-              <div className="search-books-results">
-                <ol className="books-grid">
-                     {
-                         this.state.queriedBooks.map(queriedBook => {
-                             let thisShelf = "none";
+                <div className="search-books-results">
+                    <ol className="books-grid">
+                    {
+                        this.state.queriedBooks.map(queriedBook => {
+                            let thisShelf = "none";
 
-                             this.props.books.map(book => (
-                                 book.id === queriedBook.id ?
-                                 thisShelf = book.shelf :
-                                 ''
-                             ));
-                             return (
-                             <li key = {queriedBook.id}>
-                                <Book
-                                    book = {queriedBook}
-                                    changeShelf = {this.props.changeShelf}
-                                    shelf = {thisShelf}
-                                />
-                             </li>
-                             )
-                            })
-                     }
-                </ol>
-              </div>
+                            this.props.books.map(book => (
+                                book.id === queriedBook.id ? thisShelf = book.shelf : ''
+                            ));
+
+                            return (
+                                <li key = {queriedBook.id}>
+                                    <Book
+                                        book = {queriedBook}
+                                        changeShelf = {this.props.changeShelf}
+                                        shelf = {thisShelf}
+                                    />
+                                </li>
+                            )
+                        })
+                    }
+                    </ol>
+                </div>
             </div>
         );
     }

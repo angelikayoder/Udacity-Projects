@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-class  Shelf extends Component {
-
-}
+class  Shelf extends Component {}
 
 export default  Shelf;
