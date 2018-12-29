@@ -1,32 +1,78 @@
 import React, {Component} from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { compose, withState } from 'recompose';
 
-const MyMapComponent = withScriptjs(withGoogleMap((props) =>
-  <GoogleMap
-    defaultZoom={12}
-    defaultCenter={{ lat: 41.8506, lng: -87.7937 }}
-  >
-    {
-        props.places.map(place => {
-            return (
-                <Marker
-                    key = {place.id}
-                    position = {{
-                        lat: place.venue.location.lat,
-                        lng: place.venue.location.lng
-                    }}
-                />
-            )
-      })
-    }
-  </GoogleMap>
-))
+import {
+    withScriptjs,
+    withGoogleMap,
+    GoogleMap,
+    Marker,
+    InfoWindow
+} from "react-google-maps";
+
+const MyMapComponent = compose(
+    withState('place', 'setPlace', null),
+    withScriptjs,
+    withGoogleMap
+)(props =>
+    <GoogleMap
+        defaultZoom={10}
+        defaultCenter={{ lat: 41.8506, lng: -87.7937 }}
+    >
+        {
+            props.places.map(place => {
+                const position = {
+                    lat: place.venue.location.lat,
+                    lng: place.venue.location.lng
+                }
+
+                return (
+                    <Marker
+                        key = {place.id}
+                        position = {position}
+                        title = {place.venue.name}
+                        animation = {window.google.maps.Animation.DROP}
+                        onClick = {() => {
+                            console.log(place)
+                            if (props.place) {
+                                if (props.place === place) {
+                                    props.setPlace(null)
+                                } else {
+                                    props.setPlace(place)
+                                }
+                            } else {
+                                props.setPlace(place)
+                            }
+                            // props.setPlace(props.place ? null : place)
+                        }}
+                    >
+                    {
+                        place === props.place &&
+                            <InfoWindow onCloseClick = {() => props.setPlace(null)}>
+                                <div>
+                                    <h1>{place.venue.name}</h1>
+                                    <address>
+                                    {place.venue.location.formattedAddress[0]}
+                                    {place.venue.location.formattedAddress[1]}
+                                    {place.venue.location.formattedAddress[2]}
+                                    </address>
+                                    {
+                                        place.photo && <img src={place.photo.prefix + '300x300' + place.photo.suffix} alt={place.venue.name} title={place.venue.name} />
+                                    }
+                                </div>
+                            </InfoWindow>
+                    }
+                    </Marker>
+                )
+          })
+        }
+    </GoogleMap>
+)
 
 
 
 export default class Map extends Component {
     render() {
-        console.log(this.props.places)
+        // console.log(this.props.places)
         return (
             <MyMapComponent
               isMarkerShown

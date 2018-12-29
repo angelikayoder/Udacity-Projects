@@ -8,6 +8,7 @@ export const getPlaces = () => {
         // query: "Czech",
         categoryId: "52f2ae52bcbc57f1066b8b81",
         near: "Berwyn",
+        radius: "100000",
         v: "20182212"
     }
     return axios.get(searchEndpoint + new URLSearchParams(parameters))
