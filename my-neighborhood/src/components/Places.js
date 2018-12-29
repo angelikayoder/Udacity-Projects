@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import PlaceItem from '../components/PlaceItem';
-import Marker from '../components/Marker';
-// import * as PlacesAPI from '../PlacesAPI'
+  
 
 export default class Places extends Component {
     render() {
@@ -13,7 +12,7 @@ export default class Places extends Component {
                     <PlaceItem
                         place = {place}
                     />
-                    <Marker place = {place} />
+
                     </li>
                 ))
             }
