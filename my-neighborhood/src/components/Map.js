@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { compose, withState } from 'recompose';
+// import MyMarker from './MyMarker'
+import EventBus from 'eventbusjs';
 
 import {
     withScriptjs,
@@ -31,6 +33,7 @@ const MyMapComponent = compose(
                         position = {position}
                         title = {place.venue.name}
                         animation = {window.google.maps.Animation.DROP}
+                        isSelected = {props.selectedPlace && (place.id === props.selectedPlace.id) ? true : false}
                         onClick = {() => {
                             console.log(place)
                             if (props.place) {
@@ -42,8 +45,8 @@ const MyMapComponent = compose(
                             } else {
                                 props.setPlace(place)
                             }
-                            // props.setPlace(props.place ? null : place)
                         }}
+
                     >
                     {
                         place === props.place &&
@@ -71,16 +74,34 @@ const MyMapComponent = compose(
 
 
 export default class Map extends Component {
+    state = {
+        selectedPlace: null
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.onPlaceSelected = this.onPlaceSelected.bind(this);
+
+        EventBus.addEventListener("PLACE_SELECTED", this.onPlaceSelected);
+    }
+
+    onPlaceSelected(e) {
+        // console.log('Map', e.target)
+        this.setState({ selectedPlace: e.target })
+    }
+
     render() {
         // console.log(this.props.places)
         return (
             <MyMapComponent
-              isMarkerShown
+              isMarkerShown 
               googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAtcWBXNw50hUEw4K6wD5ZuV9JTUGduDoI"
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%`, width: '70%' }} />}
               mapElement={<div style={{ height: `100%` }} />}
               places={this.props.places}
+              place={this.state.selectedPlace}
             />
         );
     }
