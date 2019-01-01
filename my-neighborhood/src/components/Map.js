@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { compose, withState } from 'recompose';
+import { compose } from 'recompose';
+import EventBus from 'eventbusjs';
 
 import {
     withScriptjs,
@@ -10,7 +11,6 @@ import {
 } from "react-google-maps";
 
 const MyMapComponent = compose(
-    withState('place', 'setPlace', null),
     withScriptjs,
     withGoogleMap
 )(props =>
@@ -20,9 +20,21 @@ const MyMapComponent = compose(
     >
         {
             props.places.map(place => {
-                const position = {
+                let position = {
                     lat: place.venue.location.lat,
                     lng: place.venue.location.lng
+                }
+
+                let isSelected = window.isSelected(place)
+                let animation = isSelected ? window.google.maps.Animation.BOUNCE : null
+
+                function onClickHandler() {
+                    // props.setSelectedPlace(place)
+                    EventBus.dispatch("PLACE_SELECTED", place)
+                }
+
+                function onCloseClickHandler() {
+                    EventBus.dispatch("PLACE_SELECTED", null)
                 }
 
                 return (
@@ -30,24 +42,12 @@ const MyMapComponent = compose(
                         key = {place.id}
                         position = {position}
                         title = {place.venue.name}
-                        animation = {window.google.maps.Animation.DROP}
-                        onClick = {() => {
-                            console.log(place)
-                            if (props.place) {
-                                if (props.place === place) {
-                                    props.setPlace(null)
-                                } else {
-                                    props.setPlace(place)
-                                }
-                            } else {
-                                props.setPlace(place)
-                            }
-                            // props.setPlace(props.place ? null : place)
-                        }}
+                        animation = {animation}
+                        onClick = {onClickHandler}
                     >
                     {
-                        place === props.place &&
-                            <InfoWindow onCloseClick = {() => props.setPlace(null)}>
+                        isSelected &&
+                            <InfoWindow onCloseClick = {onCloseClickHandler}>
                                 <div>
                                     <h1>{place.venue.name}</h1>
                                     <address>
@@ -72,11 +72,12 @@ const MyMapComponent = compose(
 
 export default class Map extends Component {
     render() {
-        // console.log(this.props.places)
+        const apiKey = 'AIzaSyAtcWBXNw50hUEw4K6wD5ZuV9JTUGduDoI'
+        const googleMapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${apiKey}`
+
         return (
             <MyMapComponent
-              isMarkerShown
-              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAtcWBXNw50hUEw4K6wD5ZuV9JTUGduDoI"
+              googleMapURL={googleMapURL}
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%`, width: '70%' }} />}
               mapElement={<div style={{ height: `100%` }} />}

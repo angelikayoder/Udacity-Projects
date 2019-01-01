@@ -9,10 +9,8 @@ export default class Sidebar extends Component {
         return (
             <div className="sidebar">
                 <input type={"search"} id={"searchbox"} placeholder={"Search Places"}/>
-                <Places
-                    places = {this.props.places}
-                />
-            </div> 
+                <Places places = {this.props.places} />
+            </div>
         )
     }
 }
