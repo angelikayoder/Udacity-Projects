@@ -9,11 +9,10 @@ export default class Places extends Component {
             {
                 this.props.places.map(place => (
                     <li className="placeitem" key={place.id}>
-                    <PlaceItem
-                        place = {place}
-                        onClickHandler = {this.props.onClickHandler}
-                    />
-
+                        <PlaceItem
+                            place = {place}
+                            onClickHandler = {this.props.onClickHandler}
+                        />
                     </li>
                 ))
             }

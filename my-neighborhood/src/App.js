@@ -3,17 +3,36 @@ import './App.css';
 import Map from './components/Map';
 import Sidebar from './components/Sidebar';
 import * as PlacesAPI from './PlacesAPI'
-// import EventBus from 'eventbusjs';
+import EventBus from 'eventbusjs';
 
-class App extends Component {
+window.selectedPlace = null;
+
+window.isSelected = function(place) {
+    return window.selectedPlace && place && (window.selectedPlace.id === place.id)
+}
+
+export default class App extends Component {
     state = {
-        places: []
+        places: [],
+        selectedPlace: null
     }
 
     componentDidMount() {
         PlacesAPI.getPlaces().then(places => {
             this.setState({places: places})
         })
+
+        this.onPlaceSelected = this.onPlaceSelected.bind(this)
+        EventBus.addEventListener('PLACE_SELECTED', this.onPlaceSelected)
+    }
+
+    onPlaceSelected(e) {
+        let place = e.target
+
+        window.selectedPlace = place
+
+        // Set state to force a re-reneder of the App
+        this.setState({ selectedPlace: place })
     }
 
     render() {
@@ -25,5 +44,3 @@ class App extends Component {
         );
     }
 }
-
-export default App;
