@@ -11,10 +11,13 @@ window.isSelected = function(place) {
     return window.selectedPlace && place && (window.selectedPlace.id === place.id)
 }
 
+window.query = null;
+
 export default class App extends Component {
     state = {
         places: [],
-        selectedPlace: null
+        selectedPlace: null,
+        query: null
     }
 
     componentDidMount() {
@@ -24,6 +27,9 @@ export default class App extends Component {
 
         this.onPlaceSelected = this.onPlaceSelected.bind(this)
         EventBus.addEventListener('PLACE_SELECTED', this.onPlaceSelected)
+
+        this.onQueryChange = this.onQueryChange.bind(this)
+        EventBus.addEventListener('QUERY_CHANGED', this.onQueryChange)
     }
 
     onPlaceSelected(e) {
@@ -33,6 +39,19 @@ export default class App extends Component {
 
         // Set state to force a re-reneder of the App
         this.setState({ selectedPlace: place })
+    }
+
+    onQueryChange(e) {
+        let query = e.target
+
+        window.query = query
+
+        PlacesAPI.getPlaces(query).then(places => {
+            this.setState({
+                query: query,
+                places: places
+            })
+        })
     }
 
     render() {

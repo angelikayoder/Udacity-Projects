@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getPlaces = () => {
+export const getPlaces = (query) => {
     const searchEndpoint = "https://api.foursquare.com/v2/search/recommendations?"
 
     const parameters = {
@@ -10,12 +10,26 @@ export const getPlaces = () => {
         categoryId: "52f2ae52bcbc57f1066b8b81",
         near: "Berwyn",
         radius: "100000",
-        v: "20182212"
+        v: "20182212",
+        // query: query ? query : null
     }
 
     return axios.get(searchEndpoint + new URLSearchParams(parameters))
                 .then(response => {
-                    return response.data.response.group.results
+                    let results = response.data.response.group.results
+
+                    if (query) {
+                        let regexp = new RegExp(query, 'i')
+
+                        results = results.filter(place => {
+                            if (place.venue.name.match(regexp)) {
+                                return place
+                            }
+                            return null
+                        })
+                    }
+
+                    return results
                 })
                 .catch(error => {
                     console.log(error)
