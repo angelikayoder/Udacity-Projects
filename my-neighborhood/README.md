@@ -4,6 +4,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This is Angelika Yoder's "My Neighborhood" project for Udacity's Front End Nanodegree Program.
 It's a map app, built with React,  that shows you Czech resturants on Chicago's West Side. You can filter the list of restaurants, which is provided through the Foursquare API, by typing in the search box on the left side.
 
+The following were also used in the creation of this app:
+* EventBus to communicate info between components https://github.com/krasimir/EventBus
+* react-google-maps was used for map-based components https://github.com/tomchentw/react-google-maps
+* Recompose which is a dependency of react-google-maps https://github.com/acdlite/recompose
+
 To get started viewing the project:
 
 * install all project dependencies with `npm install`
