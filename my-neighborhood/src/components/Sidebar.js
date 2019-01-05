@@ -11,10 +11,11 @@ export default class Sidebar extends Component {
     render() {
         return (
             <div className="sidebar">
+                <h3>Search Foursquare</h3>
                 <input
                     type="text"
                     id="searchbox"
-                    placeholder="Search Places"
+                    placeholder="Type Here"
                     autoFocus value={window.query || ''}
                     onChange={this.updateQuery}
                     aria-label="Search Box"
