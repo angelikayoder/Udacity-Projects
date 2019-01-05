@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Udacity-Projects/my-neighborhood/precache-manifest.85bf1c1fd9088068a05a3f220c7b6d80.js"
+  "/Udacity-Projects/my-neighborhood/index.html/precache-manifest.0094deec0bc6d76d5e8091d0d65be386.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Udacity-Projects/my-neighborhood/index.html", {
+workbox.routing.registerNavigationRoute("/Udacity-Projects/my-neighborhood/index.html/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
