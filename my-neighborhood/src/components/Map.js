@@ -29,7 +29,6 @@ const MyMapComponent = compose(
                 let animation = isSelected ? window.google.maps.Animation.BOUNCE : null
 
                 function onClickHandler() {
-                    // props.setSelectedPlace(place)
                     EventBus.dispatch("PLACE_SELECTED", place)
                 }
 
@@ -48,15 +47,15 @@ const MyMapComponent = compose(
                     {
                         isSelected &&
                             <InfoWindow onCloseClick = {onCloseClickHandler}>
-                                <div>
-                                    <h1>{place.venue.name}</h1>
+                                <div aria-label={"Description of " + place.venue.name}>
+                                    <h3>{place.venue.name}</h3>
                                     <address>
                                     {place.venue.location.formattedAddress[0]}
                                     {place.venue.location.formattedAddress[1]}
                                     {place.venue.location.formattedAddress[2]}
                                     </address>
                                     {
-                                        place.photo && <img src={place.photo.prefix + '300x300' + place.photo.suffix} alt={place.venue.name} title={place.venue.name} />
+                                        place.photo && <img src={place.photo.prefix + '200x200' + place.photo.suffix} alt={place.venue.name} title={place.venue.name} />
                                     }
                                 </div>
                             </InfoWindow>
