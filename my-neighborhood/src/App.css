@@ -6,48 +6,74 @@
   flex-flow: row;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+
+header {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1 {
+    padding-top: 1%;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
-.App-link {
-  color: #61dafb;
+h3 {
+    padding: 0;
+    margin: 0;
+    padding-bottom: 3%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+li.placeitem {
+    text-align: center;
+    width: 90%;
+    align-self: center;
 }
 
  li.placeitem div {
+    display: flex;
     padding-top: 10%;
     border: 1px solid black  ;
-    margin:  auto;
+    max-width: 90%;
+    width: 90%;
+    overflow: hidden;
+    align-content: center;
+    justify-content: center;
+    background: black;
+    color: white;
 }
 
 .sidebar {
+    display: flex;
+    flex-flow: column;
     width: 30%;
-    text-align: left;
+    text-align: center;
+    background: black;
+    color: white;
 }
 
 #searchbox {
-    width: 100%;
+    height: 5vh;
+    display: flex;
+    padding-top: 10%;
+    margin-left: 5%;
+    border: 1px solid white  ;
+    max-width: 80%;
+    width: 80%;
+    overflow: hidden;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    background: black;
+    color: white;
+    font-size: 12px;
 }
 
 ul {
@@ -56,4 +82,5 @@ ul {
     flex-direction: column;
     list-style-type: none;
     align-items: flex-start;
+    padding: 0;
 }
