@@ -20,7 +20,11 @@ export default class PlaceItem extends Component {
         const name = this.props.place.venue.name;
 
         return (
-            <div className={this.state.isSelected ? 'place selected' : 'place'} onClick={this.onPlaceSelected} aria-label={"Learn more about " + name}>
+            <div
+                className={this.state.isSelected ? 'place selected' : 'place'}
+                onClick={this.onPlaceSelected}
+                aria-label={"Learn more about " + name}
+            >
                 {name}
             </div>
 

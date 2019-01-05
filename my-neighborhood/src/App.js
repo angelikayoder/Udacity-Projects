@@ -56,10 +56,10 @@ export default class App extends Component {
 
     render() {
         return (
-          <div className="App">
-            <Sidebar places = {this.state.places} />
-            <Map places = {this.state.places} />
-          </div>
+            <div className="App">
+                <Sidebar places = {this.state.places} />
+                <Map places = {this.state.places} />
+            </div>
         );
     }
 }

@@ -76,11 +76,11 @@ export default class Map extends Component {
 
         return (
             <MyMapComponent
-              googleMapURL={googleMapURL}
-              loadingElement={<div style={{ height: `100%` }} />}
-              containerElement={<div style={{ height: `100%`, width: '70%' }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-              places={this.props.places}
+                googleMapURL={googleMapURL}
+                loadingElement={<div style={{ height: `100%` }} />}
+                containerElement={<div style={{ height: `100%`, width: '70%' }} />}
+                mapElement={<div style={{ height: `100%` }} />}
+                places={this.props.places}
             />
         );
     }
