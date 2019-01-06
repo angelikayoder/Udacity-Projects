@@ -4,6 +4,7 @@ import Map from './components/Map';
 import Sidebar from './components/Sidebar';
 import * as PlacesAPI from './PlacesAPI'
 import EventBus from 'eventbusjs';
+import ErrorBoundary from './components/ErrorBoundary';
 
 window.selectedPlace = null;
 
@@ -57,8 +58,12 @@ export default class App extends Component {
     render() {
         return (
             <div className="App">
-                <Sidebar places = {this.state.places} />
-                <Map places = {this.state.places} />
+                <ErrorBoundary message="Foursquare API is down!">
+                    <Sidebar places = {this.state.places} />
+                </ErrorBoundary>
+                <ErrorBoundary message="Google Maps API is down!">
+                    <Map places = {this.state.places} />
+                </ErrorBoundary>
             </div>
         );
     }
