@@ -19,6 +19,7 @@ export default class Sidebar extends Component {
                     autoFocus value={window.query || ''}
                     onChange={this.updateQuery}
                     aria-label="Search Box"
+                    tabIndex="0"
                 />
                 <Places places={this.props.places} />
             </div>

@@ -57,7 +57,7 @@ export default class App extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="App" role="main">
                 <ErrorBoundary message="Foursquare API is down!">
                     <Sidebar places = {this.state.places} />
                 </ErrorBoundary>
