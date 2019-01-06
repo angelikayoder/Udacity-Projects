@@ -43,6 +43,7 @@ const MyMapComponent = compose(
                         title = {place.venue.name}
                         animation = {animation}
                         onClick = {onClickHandler}
+                        tabIndex="0" 
                     >
                     {
                         isSelected &&

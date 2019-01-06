@@ -24,6 +24,8 @@ export default class PlaceItem extends Component {
                 className={this.state.isSelected ? 'place selected' : 'place'}
                 onClick={this.onPlaceSelected}
                 aria-label={"Learn more about " + name}
+                tabIndex="0"
+                role="contentinfo"
             >
                 {name}
             </div>
